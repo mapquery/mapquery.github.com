@@ -12,10 +12,12 @@
   </script>
   <style type="text/css">
 .map {
-  height:512px;
-  width:512px;
-  float:left;
-  clear:left;
+border: solid 1px #4e9a06;
+  height:200px;
+  width:420px;
+    float: right;
+    clear: right;
+    margin: 10px;
 }
  </style>
   <title>mapquery/mapquery @ GitHub</title>
@@ -23,13 +25,13 @@
   <style type="text/css">
     body {
       margin-top: 1.0em;
-      background-color: #ebf075;
+      background-color: #ececec;
       font-family: Helvetica, Arial, FreeSans, san-serif;
       color: #000000;
     }
     #container {
       margin: 0 auto;
-      width: 700px;
+      width: 850px;
     }
     h1 { font-size: 3.8em; color: #140f8a; margin-bottom: 3px; }
     h1 .small { font-size: 0.4em; }
@@ -38,7 +40,18 @@
     h3 { text-align: center; color: #140f8a; }
     a { color: #140f8a; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
+    .download { 
+        width: 400px;
+        border: 1px solid grey;
+        float: right;
+        margin: 10px;
+        padding: 10px;
+    }
+    .longdesc {
+    width: 400px;
+    float: left;
+    margin-bottom: 10px;
+    }
     pre { background: #000; color: #fff; padding: 15px;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
@@ -51,48 +64,40 @@
   <div id="container">
 
     <div class="download">
+         <h2>Download</h2>
       <a href="http://github.com/mapquery/mapquery/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+        <img border="0" width="50" src="http://github.com/images/modules/download/zip.png"></a>
       <a href="http://github.com/mapquery/mapquery/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+        <img border="0" width="50" src="http://github.com/images/modules/download/tar.png"></a>
+         <pre>$ git clone git://github.com/mapquery/mapquery</pre>
     </div>
 
-    <h1><a href="http://github.com/mapquery/mapquery">mapquery</a>
-      <span class="small">by <a href="http://github.com/mapquery">mapquery</a></span></h1>
-
+    <h1><img src="img/logo.png"><a href="http://github.com/mapquery/mapquery"> MapQuery</a></h1>
+   
     <div class="description">
       Combining the power of OpenLayers and jQuery
+      
     </div>
-
-    <h2>License</h2>
-<p>MIT
-</p>
-<h2>Authors</h2>
-<p>Volker Mische (volker.mische@gmail.com)
-<br/>
-<br/>      </p>
-<h2>Contact</h2>
-<p> (volker.mische@gmail.com)
-<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/mapquery/mapquery/zipball/master">zip</a> or
-      <a href="http://github.com/mapquery/mapquery/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/mapquery/mapquery</pre>
-    </p>
+    <div class="longdesc">
+    MapQuery is a jQuery plugin that you can use to add mapping to your website. Whether you quickly want to add a simple map to a page, or build a feature rich web application, MapQuery is just the thing you need.
+    <ul>
+    <li>    It is easy to use</li>
+    <li>You can do a lot with it</li>
+    <li>It is based on jQuery</li>
+</ul>
+The map on this page is included with:
+    <pre>$('#map').mapQuery({layers:[{type:'osm'}]});</pre>
+    </div>
+    
+<div id="map" class="map"></div>
+        
+   
 
     <div class="footer">
       get the source code on GitHub : <a href="http://github.com/mapquery/mapquery">mapquery/mapquery</a>
     </div>
 
   </div>
-<div id="map" class="map"></div>
   
 </body>
 </html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>MapQuery</title>
+<meta name="generator" content="joDoc">
+<link rel="stylesheet" type="text/css" href="docbody.css">
+<link rel="stylesheet" type="text/css" href="doc.css">
+<link rel="stylesheet" type="text/css" href="github.min.css">
+<link href='http://fonts.googleapis.com/css?family=Josefin+Slab:700&subset=latin&v2' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="format-detection" content="false">
+<script src="highlight.js" type="text/javascript"></script>
+<script type="application/javascript">hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery(options)">mapQuery(options)</a></li></ul></code></div>
+    <h1><a name="MapQuery.Core">MapQuery.Core</a></h1>
+
+<h3><em>$('selector')</em>.<code><a name="mapQuery(options)">mapQuery(options)</a></code></h3>
+
+<p><em>version added 0.1</em>
+<strong>Description</strong>: initialise MapQuery and associate it with the matched element </p>
+
+<p><strong>options</strong>  an object of key-value pairs with options for the map.  </p>
+
+<blockquote>
+  <p>returns: jQuery</p>
+</blockquote>
+
+<p>We can initialise MapQuery without any options, or for instance pass in a layers object. 
+The mapQuery function returns a jQuery object, to access the mapQuery object retrieve
+the 'mapQuery' data object.</p>
+
+<pre><code>var map = $('#map').mapQuery();
+var map = $('#map').mapQuery({layers:[{type:'osm'}]);
+
+var mq = map.data('mapQuery');
+</code></pre>
+
+<hr />
+
+<h2>MapQuery.Map</h2>
+</body>
+</html>

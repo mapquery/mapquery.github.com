@@ -14,14 +14,25 @@
 <script type="application/javascript">hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery(options)">mapQuery(options)</a></li></ul></code></div>
-    <h1><a name="MapQuery.Core">MapQuery.Core</a></h1>
+    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#goto(options)">goto(options)</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#opacity([opacity])">opacity([opacity])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#position([position])">position([position])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li></ul></code></div>
+    <h1><a name="MapQuery.Core.js">MapQuery.Core.js</a></h1>
 
-<h3><em>$('selector')</em>.<code><a name="mapQuery(options)">mapQuery(options)</a></code></h3>
+<p>The main MapQuery file. It contains the MapQuery constructor, the <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a> 
+constructor and the <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> constructor.</p>
+
+<h3><em>$('selector')</em>.<code>mapQuery([options])</code></h3>
 
 <p><em>version added 0.1</em></p>
 
-<p><strong>Description</strong>: initialise MapQuery and associate it with the matched element </p>
+<h4><strong>Description</strong>: initialise MapQuery and associate it with the matched element</h4>
 
 <p><strong>options</strong>  an object of key-value pairs with options for the map.  </p>
 
@@ -41,6 +52,185 @@ var mq = map.data('mapQuery');
 
 <hr />
 
-<h2>MapQuery.Map</h2>
+<h1><a name="MapQuery.Map">MapQuery.Map</a></h1>
+
+<p>The <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a> object. It is automatically constructed from the options 
+given in the mapQuery() constructor. The Map object is refered to as <code>map</code> in 
+the documentation.</p>
+
+<h3><em>map</em>.<code>layers([options])</code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: get/set the layers of the map</h4>
+
+<p><strong>options</strong> an object of key-value pairs with options to create one or more layers  </p>
+
+<blockquote>
+  <p>returns: [layer]  </p>
+</blockquote>
+
+<p>The <code>.layers()</code> method allows us to attach layers to a mapQuery object. It takes 
+an options object with layer options. To add multiple layers, create an array of layer 
+options objects. If an options object is given, it will return the resulting layer(s). <br />
+We can also use it to retrieve all layers currently attached to the map. </p>
+
+<pre><code>var osm = map.layers({type:'osm'});
+var layers = map.layers();
+</code></pre>
+
+<h3><em>map</em>.<code><a name="goto(options)">goto(options)</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: get/set the extent, zoom and position of the map</h4>
+
+<p><strong>position</strong> the position as [x,y] in displayProjection (default EPSG:4326) to center the map at <br />
+<strong>zoom</strong> the zoomlevel as integer to zoom the map to <br />
+<strong>box</strong> an array with the lower left x, lower left y, upper right x, upper right y to zoom the map to, 
+this will take precedent when conflicting with any of the above values <br />
+<strong>projection</strong> the projection the coordinates are in, default is the displayProjection    </p>
+
+<blockquote>
+  <p>returns {position: [x,y], zoom: z<int>, box: [llx,lly,urx,ury]}  </p>
+</blockquote>
+
+<p>The <code>.goto()</code> method allows us to move to map to a specific zoom level, specific 
+position or a specific extent. We can specify the projection of the coordinates
+to override the displayProjection. For instance you want to show the coordinates
+in 4326, but you have a dataset in EPSG:28992 (dutch projection). <br />
+We can also retrieve the current zoomlevel, position and extent from the map. 
+The coordinates are returned in displayProjection.</p>
+
+<pre><code>var goto = map.goto();
+map.goto({zoom:4});
+map.goto({position:[5,52]});
+map.goto(box:[-180,-90,180,90]);
+map.goto({position:[125000,485000],projection:'EPSG:28992'});
+</code></pre>
+
+<hr />
+
+<h1><a name="MapQuery.Layer">MapQuery.Layer</a></h1>
+
+<p>The <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> object. It is constructed with layer options object in the
+<code>map.layers()</code> function or by passing a <code>layer:{options}</code> object in the <code>mapQuery()</code> 
+constructor. The Layer object is refered to as <code>layer</code> in the documentation.</p>
+
+<h3><em>layer</em>.<code>down([delta])</code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: move the layer down in the layer stack of the map</h4>
+
+<p><strong>delta</strong> the amount of layers the layer has to move down in the layer stack (default 1)  </p>
+
+<blockquote>
+  <p>returns layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)  </p>
+</blockquote>
+
+<p>The <code>.down(delta)</code> method is a shortcut method for <code>.position(pos)</code> which makes
+it easier to move a layer down in the layerstack relative to its current position.
+It takes an integer and will try to move the layer down the number of places given.
+If delta is bigger than the current position in the stack, it will put the layer 
+at the bottom.</p>
+
+<pre><code>layer.down();  //will move layer 1 place down
+layer.down(3); //will move layer 3 places down
+</code></pre>
+
+<h3><em>layer</em>.<code><a name="remove()">remove()</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: remove the layer from the map</h4>
+
+<blockquote>
+  <p>returns layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)  </p>
+</blockquote>
+
+<p>The <code>.<a href="jquery.mapquery.core.js.html#remove()">remove()</a></code> method allows us to remove a layer from the map. 
+It returns an id to allow widgets to remove their references to the destroyed layer.</p>
+
+<pre><code>var id = layer.<a href="jquery.mapquery.core.js.html#remove()">remove()</a>;
+</code></pre>
+
+<h3><em>layer</em>.<code>position([position])</code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: get/set the <code>position</code> of the layer in the layer stack of the map</h4>
+
+<p><strong>position</strong> an integer setting the new position of the layer in the layer stack  </p>
+
+<blockquote>
+  <p>returns position (integer)  </p>
+</blockquote>
+
+<p>The <code>.position()</code> method allows us to change the position of the layer in the layer 
+stack. It will take into account the hidden baselayer that is used by OpenLayers. 
+If no position is given, it will return the current postion.</p>
+
+<pre><code>var pos =  layer.position();
+layer.position(2);
+</code></pre>
+
+<h3><em>layer</em>.<code>up([delta])</code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: move the layer up in the layer stack of the map</h4>
+
+<p><strong>delta</strong> the amount of layers the layer has to move up in the layer stack (default 1)  </p>
+
+<blockquote>
+  <p>returns layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)  </p>
+</blockquote>
+
+<p>The <code>.up(delta)</code> method is a shortcut method for <code>.position(pos)</code> which makes
+it easier to move a layer up in the layerstack relative to its current position.
+It takes an integer and will move the layer up the number of places given.</p>
+
+<pre><code>layer.up();  //will move layer 1 place up
+layer.up(3); //will move layer 3 places up
+</code></pre>
+
+<h3><em>layer</em>.<code>visible([visible])</code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: get/set the <code>visible</code> state of the layer</h4>
+
+<p><strong>visible</strong> a boolean setting the visibiliyu of the layer  </p>
+
+<blockquote>
+  <p>returns visible (boolean)  </p>
+</blockquote>
+
+<p>The <code>.visible()</code> method allows us to change the visibility of the layer. 
+If no visible is given, it will return the current visibility.</p>
+
+<pre><code>var vis =  layer.visible();
+layer.visible(true);
+</code></pre>
+
+<h3><em>layer</em>.<code>opacity([opacity])</code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: get/set the <code>opacity</code> of the layer</h4>
+
+<p><strong>position</strong> a float [0-1] setting the opacity of the layer  </p>
+
+<blockquote>
+  <p>returns opacity (float)  </p>
+</blockquote>
+
+<p>The <code>.opacity()</code> method allows us to change the opacity of the layer. 
+If no opacity is given, it will return the current opacity.</p>
+
+<pre><code>var opac =  layer.opacity();
+layer.opacity(0.7);
+</code></pre>
 </body>
 </html>

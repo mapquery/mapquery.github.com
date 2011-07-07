@@ -28,7 +28,7 @@
 <p>The main MapQuery file. It contains the MapQuery constructor, the <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a> 
 constructor and the <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> constructor.</p>
 
-<h3><em>$('selector')</em>.<code>mapQuery([options])</code></h3>
+<h3><em>$('selector')</em>.<code><a name="mapQuery([options])">mapQuery([options])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -55,10 +55,10 @@ var mq = map.data('mapQuery'); //get the MapQuery object
 <h1><a name="MapQuery.Map">MapQuery.Map</a></h1>
 
 <p>The <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a> object. It is automatically constructed from the options 
-given in the <code>mapQuery([options])</code> constructor. The Map object is refered to as <em>map</em> in 
+given in the <code><a name="mapQuery([options])">mapQuery([options])</a></code> constructor. The Map object is refered to as <em>map</em> in 
 the documentation.</p>
 
-<h3><em>map</em>.<code>layers([options])</code></h3>
+<h3><em>map</em>.<code><a name="layers([options])">layers([options])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -79,7 +79,7 @@ We can also use it to retrieve all layers currently attached to the map. </p>
 var layers = map.layers(); //get all layers of the map
 </code></pre>
 
-<h3><em>map</em>.<code>goto([options])</code></h3>
+<h3><em>map</em>.<code><a name="goto([options])">goto([options])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -114,10 +114,10 @@ map.goto({position:[125000,485000],projection:'EPSG:28992'}); //pan to point 125
 <h1><a name="MapQuery.Layer">MapQuery.Layer</a></h1>
 
 <p>The <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> object. It is constructed with layer options object in the
-map.<code>layers([options])</code> function or by passing a <code>layer:{options}</code> object in the <code>mapQuery()</code> 
+map.<code><a name="layers([options])">layers([options])</a></code> function or by passing a <code>layer:{options}</code> object in the <code>mapQuery()</code> 
 constructor. The Layer object is refered to as <em>layer</em> in the documentation.</p>
 
-<h3><em>layer</em>.<code>down([delta])</code></h3>
+<h3><em>layer</em>.<code><a name="down([delta])">down([delta])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -155,7 +155,7 @@ It returns an id to allow widgets to remove their references to the destroyed la
 <pre><code>var id = layer.<a href="jquery.mapquery.core.js.html#remove()">remove()</a>; //remove this layer
 </code></pre>
 
-<h3><em>layer</em>.<code>position([position])</code></h3>
+<h3><em>layer</em>.<code><a name="position([position])">position([position])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -176,7 +176,7 @@ If no position is given, it will return the current postion.</p>
 layer.position(2); //put layer on position 2 in the layer stack
 </code></pre>
 
-<h3><em>layer</em>.<code>up([delta])</code></h3>
+<h3><em>layer</em>.<code><a name="up([delta])">up([delta])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -196,7 +196,7 @@ It takes an integer and will move the layer up the number of places given.</p>
 layer.up(3); //move layer 3 places up
 </code></pre>
 
-<h3><em>layer</em>.<code>visible([visible])</code></h3>
+<h3><em>layer</em>.<code><a name="visible([visible])">visible([visible])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -215,7 +215,7 @@ If no visible is given, it will return the current visibility.</p>
 layer.visible(true); //set visibility of layer to true
 </code></pre>
 
-<h3><em>layer</em>.<code>opacity([opacity])</code></h3>
+<h3><em>layer</em>.<code><a name="opacity([opacity])">opacity([opacity])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -232,6 +232,6 @@ If no opacity is given, it will return the current opacity.</p>
 
 <pre><code>var opac =  layer.opacity(); //get opacity of layer
 layer.opacity(0.7); //set opacity of layer to 0.7
-</code></pre>
+</code></pre>/([^\(\)\w])(visible\(\[visible\]\)|up\(\[delta\]\)|remove\(\)|position\(\[position\]\)|opacity\(\[opacity\]\)|mapQuery\(\[options\]\)|layers\(\[options\]\)|goto\(\[options\]\)|down\(\[delta\]\))(?!\<\/a|\w+)/g
 </body>
 </html>

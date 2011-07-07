@@ -63,6 +63,16 @@ body {
 .content p {
     padding:10px;
 }
+pre {
+    background: none repeat scroll 0 0 #F3F3F2;
+    border: 1px solid #3B5998;
+    border-radius: 4px 4px 4px 4px;
+    display: block;
+    margin: 1.5em 20px;
+    padding: 10px 1.5em;
+    white-space: pre-wrap;
+}
+
 #map {
     border: solid 1px #4e9a06;
     height:280px;

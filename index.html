@@ -1,128 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8'>
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" type="text/css" media="all" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <link rel="stylesheet" href="lib/jquery/themes/base/jquery-ui.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="docs/site.css" type="text/css" media="all" />
   <script src="lib/OpenLayers.js" type="text/javascript"></script>
   <script src="http://code.jquery.com/jquery-1.6.1.min.js" type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" type="text/javascript"></script>
-  <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" type="text/javascript"></script>
-  <script src="https://raw.github.com/mapquery/mapquery/master/src/jquery.mapquery.core.js" type="text/javascript"></script>
-  <script src="https://raw.github.com/mapquery/mapquery/master/src/jquery.mapquery.mqZoomButtons.js" type="text/javascript"></script>
+  <script src="lib/jquery/jquery.tmpl.js" type="text/javascript"></script>
+  <script src="src/jquery.mapquery.core.js" type="text/javascript"></script>
+  <script src="src/jquery.mapquery.mqZoomButtons.js" type="text/javascript"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-    $('#map').mapQuery({layers:[{type:'osm'}]}); //initialise mapquery with an OSM layer
+    var map = $('#map').mapQuery({layers:[{type:'osm'}]}); //initialise mapquery with an OSM layer
     $('.zoom').mqZoomButtons({map:$('#map')});
+    map.data('mapQuery').goto({zoom:1,position:[0,20]});
     });
   </script>
-  <style type="text/css">
-.map {
-border: solid 1px #4e9a06;
-  height:200px;
-  width:420px;
-    float: right;
-    clear: right;
-   
-}
-.zoom {
-  position: absolute;
-  z-index: 100000;
-  margin: 5px;
-  cursor: pointer;
-}
-.zoom .ui-icon {
-  margin: 0 4px;
-}
-.zoom .ui-corner-all{
-  margin: 2px;
-  padding: 4px 0;
-}
-.olControlAttribution {
-bottom: 0.5em !important;
-}
- </style>
-  <title>mapquery/mapquery @ GitHub</title>
-
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #ececec;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 850px;
-    }
-    h1 { font-size: 3.8em; color: #140f8a; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #140f8a; }
-    h3 { text-align: center; color: #140f8a; }
-    a { color: #140f8a; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { 
-        width: 400px;
-        border: 1px solid grey;
-        float: right;
-        margin: 10px;
-        padding: 10px;
-    }
-    .longdesc {
-    width: 400px;
-    float: left;
-    margin-bottom: 10px;
-    }
-    #mapholder {
-     padding: 10px;
-    }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; clear:both;}
-  </style>
+  <title>MapQuery</title>
 </head>
-
 <body>
-  <a href="http://github.com/mapquery/mapquery"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
   <div id="container">
-
-    <div class="download">
-         <h2>Download</h2>
-      <a href="http://github.com/mapquery/mapquery/zipball/master">
-        <img border="0" width="50" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/mapquery/mapquery/tarball/master">
-        <img border="0" width="50" src="http://github.com/images/modules/download/tar.png"></a>
-         <pre>$ git clone git://github.com/mapquery/mapquery</pre>
+    <div class="sidebar">
+        <div class="logo"><span><img src="img/logo.png"><a href="http://mapquery.org/">
+             MapQuery</a></span></div>
+        <div class="blurb">
+            <h2>Combining the powers of OpenLayers and jQuery</h2>
+        </div>
+        <div class="download">
+            <ul>
+                <li><a href="http://github.com/mapquery/mapquery/zipball/master">MapQuery.zip</a></li>
+                <li><a href="http://github.com/mapquery/mapquery/">MapQuery.git</a></li>
+            </ul>
+        </div>
     </div>
-
-    <h1><img src="img/logo.png"><a href="http://github.com/mapquery/mapquery"> MapQuery</a></h1>
-   
-    <div class="description">
-      Combining the power of OpenLayers and jQuery
-      
+    <div class="header">
+        <a href="/" class="active">Overview</a>
+        <a href="docs">Documentation</a>
+        <a href="demo/basic.html">Examples</a>
+        <a href="http://github.com/mapquery/mapquery/">Download</a>
+        </ul>
     </div>
-    <div class="longdesc">
-    MapQuery is a jQuery plugin that you can use to add mapping to your website. Whether you quickly want to add a simple map to a page, or build a feature rich web application, MapQuery is just the thing you need.
-    <ul>
-    <li>    It is easy to use</li>
-    <li>You can do a lot with it</li>
-    <li>It is based on jQuery</li>
-</ul>
-The map on this page is included with:
-    <pre>$('#map').mapQuery({layers:[{type:'osm'}]});
-    $('.zoom').mqZoomButtons({map:$('#map')});</pre>
+    <div class="content">
+        <div id="mapholder">
+            <div id="map">
+                <div class="zoom"></div>
+            </div>
+        </div>
+        <div class="text">
+            <p>
+            MapQuery is a jQuery plugin that you can use to add mapping to your 
+            website. Whether you quickly want to add a simple map to a page, or 
+            build a feature rich web application, MapQuery is just the thing you need.
+            </p>
+        </div>
     </div>
-<div id="mapholder">
-<div id="map" class="map"> <div id="zoombuttons" class="zoom"></div></div>
-</div>        
-   
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/mapquery/mapquery">mapquery/mapquery</a>
-    </div>
-
   </div>
-  
 </body>
 </html>

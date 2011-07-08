@@ -79,18 +79,12 @@ a:hover {
     margin-left: 305px;
     width: 620px;
 }
-iframe {
-   border: none;
-   width: 100%;
-   height: 100%;
-}
 .example {
-    font-weight: bold;
-    text-decoration: none;
+     text-decoration: none;
+    margin-right: 20px;
     color: #070e31;
     cursor: pointer;
 }
-.example:hover {
-     text-decoration: underline;
-}
+.example:hover{
+    text-decoration: underline;
 }

@@ -30,8 +30,10 @@
 <li><a href="jquery.mapquery.mqLayerControl.js.html#jquery.mapquery.mqLayerControl.js">jquery.mapquery.mqLayerControl.js</a></li>
 <li><a href="jquery.mapquery.mqLayerManager.js.html#jquery.mapquery.mqLayerManager.js">jquery.mapquery.mqLayerManager.js</a></li>
 <li><a href="jquery.mapquery.mqOverviewMap.js.html#jquery.mapquery.mqOverviewMap.js">jquery.mapquery.mqOverviewMap.js</a></li>
+<li><a href="jquery.mapquery.mqPopup.js.html#jquery.mapquery.mqPopup.js">jquery.mapquery.mqPopup.js</a></li>
 <li><a href="jquery.mapquery.mqZoomButtons.js.html#jquery.mapquery.mqZoomButtons.js">jquery.mapquery.mqZoomButtons.js</a></li>
-<li><a href="jquery.mapquery.mqZoomSlider.js.html#jquery.mapquery.mqZoomSlider.js">jquery.mapquery.mqZoomSlider.js</a></li></ul>
+<li><a href="jquery.mapquery.mqZoomSlider.js.html#jquery.mapquery.mqZoomSlider.js">jquery.mapquery.mqZoomSlider.js</a></li>
+<li><a href="jquery.mapquery.popup.js.html#jquery.mapquery.popup.js">jquery.mapquery.popup.js</a></li></ul>
 <ul>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a></li>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a></li></ul></span>
@@ -54,14 +56,73 @@
 <li class="functionli"><a href="jquery.mapquery.mqLayerControl.js.html#mqLayerControl([options])">mqLayerControl([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqLayerManager.js.html#mqLayerManager([options])">mqLayerManager([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqOverviewMap.js.html#mqOverviewMap([options])">mqOverviewMap([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqPopup.js.html#mqPopup([options])">mqPopup([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqZoomButtons.js.html#mqZoomButtons([options])">mqZoomButtons([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqZoomSlider.js.html#mqZoomSlider([options])">mqZoomSlider([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#opacity([opacity])">opacity([opacity])</a></li>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#pan(dx, dy)">pan(dx, dy)</a></li>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#pixelsFromPosition(x, y)">pixelsFromPosition(x, y)</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#position([position])">position([position])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
-<li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li></ul></code></div>
-    
+<li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li></ul></code></div>
+    <h1><a name="jquery.mapquery.popup.js">jquery.mapquery.popup.js</a></h1>
+
+<p>A plugin on mapquery.core to add a popup to the map, attached to a layer. </p>
+
+<h3><strong>map</strong>.<code><a name="pixelsFromPosition(x, y)">pixelsFromPosition(x, y)</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: get the position in viewport pixels from a coordinate</h4>
+
+<p><strong>x</strong>: the x-coordinate in map-projection <br />
+<strong>y</strong>: the y-ccordinate in map-projection</p>
+
+<blockquote>
+  <p>Returns: [x,y] in viewport pixels</p>
+</blockquote>
+
+<p>The <code>.pixelsFromPosition()</code> function allows us to get the position of a point 
+on the map in pixels on the screen. Useful for putting a DOM element at a point 
+in the map. If the coordinate is outside the current view, it will return null; </p>
+
+<pre><code>var pos = map.pixelsFromPosition(5,52) //get the pixel-position of Amsterdam
+</code></pre>
+
+<h3><strong>map</strong>.<code><a name="pan(dx, dy)">pan(dx, dy)</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: pan the map smoothly by a certain amount of pixels</h4>
+
+<p><strong>dx</strong>: the x-coordinate in pixels <br />
+<strong>dy</strong>: the y-ccordinate in pixels</p>
+
+<blockquote>
+  <p>Returns: nothing</p>
+</blockquote>
+
+<p>The <code>.pan()</code> function allows us to move the map by a certain amount of pixels. </p>
+
+<pre><code> map.pan(100,200) //pan the map 100 pixels right and 200 up
+</code></pre>
+
+<h3><strong>layer</strong>.<code><a name="zindex()">zindex()</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: get the z-index of the current layer</h4>
+
+<blockquote>
+  <p>Returns: z-index (integer)</p>
+</blockquote>
+
+<p>The <code>.zIndex()</code> function allows us to get the z-index of the current layer. </p>
+
+<pre><code> var z= layer.zIndex()
+</code></pre>
     </div>
 </body>
 </html>

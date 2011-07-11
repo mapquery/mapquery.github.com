@@ -30,8 +30,10 @@
 <li><a href="jquery.mapquery.mqLayerControl.js.html#jquery.mapquery.mqLayerControl.js">jquery.mapquery.mqLayerControl.js</a></li>
 <li><a href="jquery.mapquery.mqLayerManager.js.html#jquery.mapquery.mqLayerManager.js">jquery.mapquery.mqLayerManager.js</a></li>
 <li><a href="jquery.mapquery.mqOverviewMap.js.html#jquery.mapquery.mqOverviewMap.js">jquery.mapquery.mqOverviewMap.js</a></li>
+<li><a href="jquery.mapquery.mqPopup.js.html#jquery.mapquery.mqPopup.js">jquery.mapquery.mqPopup.js</a></li>
 <li><a href="jquery.mapquery.mqZoomButtons.js.html#jquery.mapquery.mqZoomButtons.js">jquery.mapquery.mqZoomButtons.js</a></li>
-<li><a href="jquery.mapquery.mqZoomSlider.js.html#jquery.mapquery.mqZoomSlider.js">jquery.mapquery.mqZoomSlider.js</a></li></ul>
+<li><a href="jquery.mapquery.mqZoomSlider.js.html#jquery.mapquery.mqZoomSlider.js">jquery.mapquery.mqZoomSlider.js</a></li>
+<li><a href="jquery.mapquery.popup.js.html#jquery.mapquery.popup.js">jquery.mapquery.popup.js</a></li></ul>
 <ul>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a></li>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a></li></ul></span>
@@ -54,13 +56,17 @@
 <li class="functionli"><a href="jquery.mapquery.mqLayerControl.js.html#mqLayerControl([options])">mqLayerControl([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqLayerManager.js.html#mqLayerManager([options])">mqLayerManager([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqOverviewMap.js.html#mqOverviewMap([options])">mqOverviewMap([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqPopup.js.html#mqPopup([options])">mqPopup([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqZoomButtons.js.html#mqZoomButtons([options])">mqZoomButtons([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqZoomSlider.js.html#mqZoomSlider([options])">mqZoomSlider([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#opacity([opacity])">opacity([opacity])</a></li>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#pan(dx, dy)">pan(dx, dy)</a></li>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#pixelsFromPosition(x, y)">pixelsFromPosition(x, y)</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#position([position])">position([position])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
-<li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li></ul></code></div>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li></ul></code></div>
     <h1><a name="jquery.mapquery.mqLayerControl.js">jquery.mapquery.mqLayerControl.js</a></h1>
 
 <p>The file containing the mqLayerControl Widget</p>
@@ -71,16 +77,17 @@
 
 <h4><strong>Description</strong>: create a widget to control the order of layers</h4>
 
-<p><strong>options</strong> 
-* map: the mapquery instance  </p>
+<p><ul>
+<li><strong>options</strong>: 
+<ul><li><strong>map</strong>: the mapquery instance <br /></p>
 
 <blockquote>
-  <p>Returns: widget</p>
+  <p>Returns: widget</li></ul></li>
+  </ul>
+  The mqLayerControl allows us to control the order and visibility of layers. We 
+  can also remove layers. <strong>Note</strong>: the mqLayerManager widget does this and more. 
+  It is likely that the two will be merged in the future</p>
 </blockquote>
-
-<p>The mqLayerControl allows us to control the order and visibility of layers. We 
-can also remove layers. <strong>Note</strong>: the mqLayerManager widget does this and more. 
-It is likely that the two will be merged in the future</p>
 
 <pre><code>$('#layercontrol').mqLayerControl({
    map: '#map'

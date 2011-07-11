@@ -24,9 +24,13 @@
         </div>
         <div class="index">
 <span id="index"><ul>
-<li><a href="jquery.mapquery.core.js.html#mapquery.core.js">mapquery.core.js</a></li>
+<li><a href="jquery.mapquery.core.js.html#jquery.mapquery.core.js">jquery.mapquery.core.js</a></li>
+<li><a href="jquery.mapquery.legend.js.html#jquery.mapquery.legend.js">jquery.mapquery.legend.js</a></li>
+<li><a href="jquery.mapquery.mqFeatureInfo.js.html#jquery.mapquery.mqFeatureInfo.js">jquery.mapquery.mqFeatureInfo.js</a></li>
+<li><a href="jquery.mapquery.mqLayerControl.js.html#jquery.mapquery.mqLayerControl.js">jquery.mapquery.mqLayerControl.js</a></li>
+<li><a href="jquery.mapquery.mqLayerManager.js.html#jquery.mapquery.mqLayerManager.js">jquery.mapquery.mqLayerManager.js</a></li></ul>
+<ul>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a></li>
-<li><a href="jquery.mapquery.legend.js.html#mapquery.legend.js">mapquery.legend.js</a></li>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a></li></ul></span>
          
         </div>
@@ -43,12 +47,43 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.legend.js.html#legend([options])">legend([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqFeatureInfo.js.html#mqFeatureInfo([options])">mqFeatureInfo([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqLayerControl.js.html#mqLayerControl([options])">mqLayerControl([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqLayerManager.js.html#mqLayerManager([options])">mqLayerManager([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#opacity([opacity])">opacity([opacity])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#position([position])">position([position])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li></ul></code></div>
-    
+    <h1><a name="jquery.mapquery.mqFeatureInfo.js">jquery.mapquery.mqFeatureInfo.js</a></h1>
+
+<p>The file containing the mqFeatureInfo Widget</p>
+
+<h3><em>$('selector')</em>.<code><a name="mqFeatureInfo([options])">mqFeatureInfo([options])</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a widget to show feature information</h4>
+
+<p><strong>options</strong> 
+* map: the mapquery instance
+* contents: A function that returns HTML to be put into the popup. It has one 
+argument, which is the OpenLayers feature that was selected.
+* title: Title that will be displayed at the top of the feature info (default: Feature information)</p>
+
+<blockquote>
+  <p>Returns: widget</p>
+</blockquote>
+
+<p>The mqFeatureInfo widget allows us to display the information of a selected feature.</p>
+
+<pre><code>$('#featureinfo').mqFeatureInfo({
+   map: '#map',
+   contents: function(feature) {
+       return '&lt;p&gt;' + feature.data.id + '&lt;/p&gt;';
+   }
+});
+</code></pre>
     </div>
 </body>
 </html>

@@ -28,7 +28,10 @@
 <li><a href="jquery.mapquery.legend.js.html#jquery.mapquery.legend.js">jquery.mapquery.legend.js</a></li>
 <li><a href="jquery.mapquery.mqFeatureInfo.js.html#jquery.mapquery.mqFeatureInfo.js">jquery.mapquery.mqFeatureInfo.js</a></li>
 <li><a href="jquery.mapquery.mqLayerControl.js.html#jquery.mapquery.mqLayerControl.js">jquery.mapquery.mqLayerControl.js</a></li>
-<li><a href="jquery.mapquery.mqLayerManager.js.html#jquery.mapquery.mqLayerManager.js">jquery.mapquery.mqLayerManager.js</a></li></ul>
+<li><a href="jquery.mapquery.mqLayerManager.js.html#jquery.mapquery.mqLayerManager.js">jquery.mapquery.mqLayerManager.js</a></li>
+<li><a href="jquery.mapquery.mqOverviewMap.js.html#jquery.mapquery.mqOverviewMap.js">jquery.mapquery.mqOverviewMap.js</a></li>
+<li><a href="jquery.mapquery.mqZoomButtons.js.html#jquery.mapquery.mqZoomButtons.js">jquery.mapquery.mqZoomButtons.js</a></li>
+<li><a href="jquery.mapquery.mqZoomSlider.js.html#jquery.mapquery.mqZoomSlider.js">jquery.mapquery.mqZoomSlider.js</a></li></ul>
 <ul>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a></li>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a></li></ul></span>
@@ -50,12 +53,41 @@
 <li class="functionli"><a href="jquery.mapquery.mqFeatureInfo.js.html#mqFeatureInfo([options])">mqFeatureInfo([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqLayerControl.js.html#mqLayerControl([options])">mqLayerControl([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqLayerManager.js.html#mqLayerManager([options])">mqLayerManager([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqOverviewMap.js.html#mqOverviewMap([options])">mqOverviewMap([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqZoomButtons.js.html#mqZoomButtons([options])">mqZoomButtons([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqZoomSlider.js.html#mqZoomSlider([options])">mqZoomSlider([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#opacity([opacity])">opacity([opacity])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#position([position])">position([position])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li></ul></code></div>
-    
+    <h1><a name="jquery.mapquery.mqZoomButtons.js">jquery.mapquery.mqZoomButtons.js</a></h1>
+
+<p>The file containing the mqZoomButtons Widget</p>
+
+<h3><em>$('selector')</em>.<code><a name="mqZoomButtons([options])">mqZoomButtons([options])</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a widget to show zoom buttons</h4>
+
+<p><strong>options</strong> 
+* map: the mapquery instance
+* home: boolean stating if there should be a home button added (default false)</p>
+
+<blockquote>
+  <p>Returns: widget</p>
+</blockquote>
+
+<p>The mqZoomButtons widget allows us to display a plus and minus zoom button. We 
+can also add an optional home button in between which will return the map to the 
+initial extent. </p>
+
+<pre><code>$('#zoombuttons').mqZoomButtons({
+   map: '#map',
+   home: true
+});
+</code></pre>
     </div>
 </body>
 </html>

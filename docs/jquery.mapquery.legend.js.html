@@ -47,8 +47,8 @@
         <a href="http://github.com/mapquery/mapquery/">Code</a>
     </div>
     <div class="content">
-    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
-<li class="functionli"><a href="jquery.mapquery.core.js.html#goto([options])">goto([options])</a></li>
+    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#center([options])">center([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.legend.js.html#legend([options])">legend([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
@@ -66,11 +66,12 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
-<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li></ul></code></div>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:bing}">{type:bing}</a></li></ul></code></div>
     <h1><a name="jquery.mapquery.legend.js">jquery.mapquery.legend.js</a></h1>
 
-<p>A plugin on mapquery.core to add a legend to a layer. It will check if the layer 
-is within a valid extent and zoom range. And if not will return an error message. </p>
+<p>A plugin on mapquery.core to add a legend to a layer. It will check if the layer
+is within a valid extent and zoom range. And if not will return an error message.</p>
 
 <h3><strong>layer</strong>.<code><a name="legend([options])">legend([options])</a></code></h3>
 
@@ -84,9 +85,9 @@ is within a valid extent and zoom range. And if not will return an error message
   <p>Returns: {url:url, msg:'E_ZOOMOUT' | 'E_ZOOMIN' | 'E_OUTSIDEBOX' | ''}</p>
 </blockquote>
 
-<p>The <code>.legend()</code> function allows us to attach a legend image to a layer. It will 
-also check if the layer is not visible due to wrong extent or zoom level. It will 
-return an error message which can be used to notify the user. </p>
+<p>The <code>.legend()</code> function allows us to attach a legend image to a layer. It will
+also check if the layer is not visible due to wrong extent or zoom level. It will
+return an error message which can be used to notify the user.</p>
 
 <pre><code>var legend = layer.legend();  //get the current legend
 layer.legend({url:'legendimage.png'}) //set the legend url to legendimage.png

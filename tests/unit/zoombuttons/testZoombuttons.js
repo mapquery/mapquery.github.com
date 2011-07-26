@@ -7,7 +7,7 @@ module('zoombuttons');
 test("ZoomButtons are shown", 2, function() {
     var map = $('#map1').mapQuery({
         layers:[{
-            type:'osm' 
+            type:'osm'
         }]
     });
     var mq = map.data('mapQuery');
@@ -20,19 +20,19 @@ test("ZoomButtons are shown", 2, function() {
 test("ZoomButtons work", 2, function() {
     var map = $('#map1').mapQuery({
         layers:[{
-            type:'osm' 
+            type:'osm'
         }]
     });
     var mq = map.data('mapQuery');
-    var goto = mq.goto();
+    var center = mq.center();
     $(".mq-zoombuttons-plus").trigger('click');
-    goto = mq.goto();
-    equals(goto.zoom, 2, 'Zoomed in');
+    center = mq.center();
+    equals(center.zoom, 2, 'Zoomed in');
     $(".mq-zoombuttons-minus").trigger('click');
-	goto = mq.goto();
-    equals(goto.zoom, 1, 'Zoomed out');
-    
-   
+	center = mq.center();
+    equals(center.zoom, 1, 'Zoomed out');
+
+
 });
 
 })(jQuery);

@@ -47,8 +47,8 @@
         <a href="http://github.com/mapquery/mapquery/">Code</a>
     </div>
     <div class="content">
-    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
-<li class="functionli"><a href="jquery.mapquery.core.js.html#goto([options])">goto([options])</a></li>
+    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#center([options])">center([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.legend.js.html#legend([options])">legend([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
@@ -66,10 +66,11 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
-<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li></ul></code></div>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:bing}">{type:bing}</a></li></ul></code></div>
     <h1><a name="jquery.mapquery.popup.js">jquery.mapquery.popup.js</a></h1>
 
-<p>A plugin on mapquery.core to add a popup to the map, attached to a layer. </p>
+<p>A plugin on mapquery.core to add a popup to the map, attached to a layer.</p>
 
 <h3><strong>map</strong>.<code><a name="pixelsFromPosition(x, y)">pixelsFromPosition(x, y)</a></code></h3>
 
@@ -77,16 +78,16 @@
 
 <h4><strong>Description</strong>: get the position in viewport pixels from a coordinate</h4>
 
-<p><strong>x</strong>: the x-coordinate in map-projection <br />
+<p><strong>x</strong>: the x-coordinate in map-projection
 <strong>y</strong>: the y-ccordinate in map-projection</p>
 
 <blockquote>
   <p>Returns: [x,y] in viewport pixels</p>
 </blockquote>
 
-<p>The <code>.pixelsFromPosition()</code> function allows us to get the position of a point 
-on the map in pixels on the screen. Useful for putting a DOM element at a point 
-in the map. If the coordinate is outside the current view, it will return null; </p>
+<p>The <code>.pixelsFromPosition()</code> function allows us to get the position of a point
+on the map in pixels on the screen. Useful for putting a DOM element at a point
+in the map. If the coordinate is outside the current view, it will return null;</p>
 
 <pre><code>var pos = map.pixelsFromPosition(5,52) //get the pixel-position of Amsterdam
 </code></pre>
@@ -97,14 +98,14 @@ in the map. If the coordinate is outside the current view, it will return null; 
 
 <h4><strong>Description</strong>: pan the map smoothly by a certain amount of pixels</h4>
 
-<p><strong>dx</strong>: the x-coordinate in pixels <br />
+<p><strong>dx</strong>: the x-coordinate in pixels
 <strong>dy</strong>: the y-ccordinate in pixels</p>
 
 <blockquote>
   <p>Returns: nothing</p>
 </blockquote>
 
-<p>The <code>.pan()</code> function allows us to move the map by a certain amount of pixels. </p>
+<p>The <code>.pan()</code> function allows us to move the map by a certain amount of pixels.</p>
 
 <pre><code> map.pan(100,200) //pan the map 100 pixels right and 200 up
 </code></pre>
@@ -119,7 +120,7 @@ in the map. If the coordinate is outside the current view, it will return null; 
   <p>Returns: z-index (integer)</p>
 </blockquote>
 
-<p>The <code>.zIndex()</code> function allows us to get the z-index of the current layer. </p>
+<p>The <code>.zIndex()</code> function allows us to get the z-index of the current layer.</p>
 
 <pre><code> var z= layer.zIndex()
 </code></pre>

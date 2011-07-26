@@ -47,8 +47,8 @@
         <a href="http://github.com/mapquery/mapquery/">Code</a>
     </div>
     <div class="content">
-    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
-<li class="functionli"><a href="jquery.mapquery.core.js.html#goto([options])">goto([options])</a></li>
+    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#center([options])">center([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.legend.js.html#legend([options])">legend([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
@@ -66,7 +66,8 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
-<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li></ul></code></div>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:bing}">{type:bing}</a></li></ul></code></div>
     <h1><a name="jquery.mapquery.mqZoomButtons.js">jquery.mapquery.mqZoomButtons.js</a></h1>
 
 <p>The file containing the mqZoomButtons Widget</p>
@@ -77,19 +78,18 @@
 
 <h4><strong>Description</strong>: create a widget to show zoom buttons</h4>
 
-<ul>
-<li><strong>options</strong>: 
+<p><ul>
+<li><strong>options</strong>:
 <ul><li><strong>map</strong>: the mapquery instance</li>
-<li><strong>home</strong>: boolean stating if there should be a home button added (default false)</li></ul></li>
-</ul>
+<li><strong>home</strong>: boolean stating if there should be a home button added (default false)</p>
 
 <blockquote>
-  <p>Returns: widget</p>
+  <p>Returns: widget</li></ul></li>
+  </ul>
+  The mqZoomButtons widget allows us to display a plus and minus zoom button. We
+  can also add an optional home button in between which will return the map to the
+  initial extent.</p>
 </blockquote>
-
-<p>The mqZoomButtons widget allows us to display a plus and minus zoom button. We 
-can also add an optional home button in between which will return the map to the 
-initial extent. </p>
 
 <pre><code>$('#zoombuttons').mqZoomButtons({
    map: '#map',

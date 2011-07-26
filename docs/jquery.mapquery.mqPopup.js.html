@@ -47,8 +47,8 @@
         <a href="http://github.com/mapquery/mapquery/">Code</a>
     </div>
     <div class="content">
-    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
-<li class="functionli"><a href="jquery.mapquery.core.js.html#goto([options])">goto([options])</a></li>
+    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#center([options])">center([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.legend.js.html#legend([options])">legend([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
@@ -66,7 +66,8 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
-<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li></ul></code></div>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:bing}">{type:bing}</a></li></ul></code></div>
     <h1><a name="jquery.mapquery.mqPopup.js">jquery.mapquery.mqPopup.js</a></h1>
 
 <p>The file containing the mqPopup Widget</p>
@@ -77,21 +78,20 @@
 
 <h4><strong>Description</strong>: create a popup at a click on a feature</h4>
 
-<ul>
-<li><strong>options:</strong> <br />
+<p><ul>
+<li><strong>options:</strong>
 <ul><li><strong>map</strong>: the mapquery instance</li>
-<li><strong>contents</strong>: A function that returns HTML to be put into the popup. It has one 
+<li><strong>contents</strong>: A function that returns HTML to be put into the popup. It has one
 argument, which is the OpenLayers feature that was selected.</li>
 <li><strong>title</strong>: Title that will be displayed at the top of the feature info (default: Feature popup)</li>
-<li><strong>padding</strong>: Padding (in px) around the popup when it needs to be panned in (default 10)</li></ul></li>
-</ul>
+<li><strong>padding</strong>: Padding (in px) around the popup when it needs to be panned in (default 10)</p>
 
 <blockquote>
-  <p>Returns: widget</p>
+  <p>Returns: widget</li></ul></li>
+  </ul>
+  The mqPopup widget allows us to show a popup next to a feature. It will pan with
+  the feature.</p>
 </blockquote>
-
-<p>The mqPopup widget allows us to show a popup next to a feature. It will pan with 
-the feature.</p>
 
 <pre><code> $('#popup').mqPopup({
    map: '#map',

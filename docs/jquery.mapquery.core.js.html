@@ -47,8 +47,8 @@
         <a href="http://github.com/mapquery/mapquery/">Code</a>
     </div>
     <div class="content">
-    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
-<li class="functionli"><a href="jquery.mapquery.core.js.html#goto([options])">goto([options])</a></li>
+    <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#center([options])">center([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.legend.js.html#legend([options])">legend([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
@@ -66,10 +66,17 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
-<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li></ul></code></div>
+<li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:bing}">{type:bing}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:google}">{type:google}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:json}">{type:json}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:osm}">{type:osm}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:vector}">{type:vector}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:wms}">{type:wms}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:wmts}">{type:wmts}</a></li></ul></code></div>
     <h1><a name="jquery.mapquery.core.js">jquery.mapquery.core.js</a></h1>
 
-<p>The main MapQuery file. It contains the MapQuery constructor, the <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a> 
+<p>The main MapQuery file. It contains the MapQuery constructor, the <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a>
 constructor and the <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> constructor.</p>
 
 <h3><em>$('selector')</em>.<code><a name="mapQuery([options])">mapQuery([options])</a></code></h3>
@@ -78,15 +85,19 @@ constructor and the <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQue
 
 <h4><strong>Description</strong>: initialise MapQuery and associate it with the matched element</h4>
 
-<p><strong>options</strong>  an object of key-value pairs with options for the map.  </p>
+<p><strong>options</strong>  an object of key-value pairs with options for the map. Possible pairs are:</p>
+
+<p><ul>
+<li><strong>layers</strong> (array of <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> <em>or</em> <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>): Either an array or a single layer that should be added to the map</li>
+<li><strong>center</strong> ({position: [x,y], zoom: z<int>, box: [llx,lly,urx,ury]}): Initially go to a certain location. At least one layer (in the <code>layers</code> option) needs to be specified.</p>
 
 <blockquote>
-  <p>Returns: $('selector') (jQuery object)</p>
+  <p>Returns: $('selector') (jQuery object)</li>
+  </ul>
+  We can initialise MapQuery without any options, or for instance pass in a layers object.
+  The mapQuery function returns a jQuery object, to access the mapQuery object retrieve
+  the 'mapQuery' data object.</p>
 </blockquote>
-
-<p>We can initialise MapQuery without any options, or for instance pass in a layers object. 
-The mapQuery function returns a jQuery object, to access the mapQuery object retrieve
-the 'mapQuery' data object.</p>
 
 <pre><code>var map = $('#map').mapQuery(); //create an empty map
 var map = $('#map').mapQuery({layers:[{type:'osm'}]); //create a map with osm
@@ -98,8 +109,8 @@ var mq = map.data('mapQuery'); //get the MapQuery object
 
 <h1><a name="MapQuery.Map">MapQuery.Map</a></h1>
 
-<p>The <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a> object. It is automatically constructed from the options 
-given in the <code><a name="mapQuery([options])">mapQuery([options])</a></code> constructor. The Map object is refered to as <em>map</em> in 
+<p>The <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a> object. It is automatically constructed from the options
+given in the <code><a name="mapQuery([options])">mapQuery([options])</a></code> constructor. The Map object is refered to as <em>map</em> in
 the documentation.</p>
 
 <h3><em>map</em>.<code><a name="layers([options])">layers([options])</a></code></h3>
@@ -108,22 +119,22 @@ the documentation.</p>
 
 <h4><strong>Description</strong>: get/set the layers of the map</h4>
 
-<p><strong>options</strong> an object of key-value pairs with options to create one or more layers  </p>
+<p><strong>options</strong> an object of key-value pairs with options to create one or more layers</p>
 
 <blockquote>
   <p>Returns: [layer] (array of <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)</p>
 </blockquote>
 
-<p>The <code>.layers()</code> method allows us to attach layers to a mapQuery object. It takes 
-an options object with layer options. To add multiple layers, create an array of layer 
-options objects. If an options object is given, it will return the resulting layer(s). <br />
-We can also use it to retrieve all layers currently attached to the map. </p>
+<p>The <code>.layers()</code> method allows us to attach layers to a mapQuery object. It takes
+an options object with layer options. To add multiple layers, create an array of layer
+options objects. If an options object is given, it will return the resulting layer(s).
+We can also use it to retrieve all layers currently attached to the map.</p>
 
 <pre><code>var osm = map.layers({type:'osm'}); //add an osm layer to the map
 var layers = map.layers(); //get all layers of the map
 </code></pre>
 
-<h3><em>map</em>.<code><a name="goto([options])">goto([options])</a></code></h3>
+<h3><em>map</em>.<code><a name="center([options])">center([options])</a></code></h3>
 
 <p><em>version added 0.1</em></p>
 
@@ -131,26 +142,26 @@ var layers = map.layers(); //get all layers of the map
 
 <p><strong>position</strong> the position as [x,y] in displayProjection (default EPSG:4326) to center the map at <br />
 <strong>zoom</strong> the zoomlevel as integer to zoom the map to <br />
-<strong>box</strong> an array with the lower left x, lower left y, upper right x, upper right y to zoom the map to, 
+<strong>box</strong> an array with the lower left x, lower left y, upper right x, upper right y to zoom the map to,
 this will take precedent when conflicting with any of the above values <br />
-<strong>projection</strong> the projection the coordinates are in, default is the displayProjection    </p>
+<strong>projection</strong> the projection the coordinates are in, default is the displayProjection</p>
 
 <blockquote>
-  <p>Returns: {position: [x,y], zoom: z<int>, box: [llx,lly,urx,ury]}  </p>
+  <p>Returns: {position: [x,y], zoom: z<int>, box: [llx,lly,urx,ury]}</p>
 </blockquote>
 
-<p>The <code>.goto()</code> method allows us to move to map to a specific zoom level, specific 
+<p>The <code>.center()</code> method allows us to move to map to a specific zoom level, specific
 position or a specific extent. We can specify the projection of the coordinates
 to override the displayProjection. For instance you want to show the coordinates
-in 4326, but you have a dataset in EPSG:28992 (dutch projection). <br />
-We can also retrieve the current zoomlevel, position and extent from the map. 
+in 4326, but you have a dataset in EPSG:28992 (dutch projection).
+We can also retrieve the current zoomlevel, position and extent from the map.
 The coordinates are returned in displayProjection.</p>
 
-<pre><code>var goto = map.goto(); //get the current zoom, position and extent
-map.goto({zoom:4}); //zoom to zoomlevel 4
-map.goto({position:[5,52]}); //pan to point 5,52
-map.goto(box:[-180,-90,180,90]); //zoom to the box -180,-900,180,90
-map.goto({position:[125000,485000],projection:'EPSG:28992'}); //pan to point 125000,485000 in dutch projection
+<pre><code>var center = map.center(); //get the current zoom, position and extent
+map.center({zoom:4}); //zoom to zoomlevel 4
+map.center({position:[5,52]}); //pan to point 5,52
+map.center(box:[-180,-90,180,90]); //zoom to the box -180,-900,180,90
+map.center({position:[125000,485000],projection:'EPSG:28992'}); //pan to point 125000,485000 in dutch projection
 </code></pre>
 
 <hr />
@@ -158,7 +169,7 @@ map.goto({position:[125000,485000],projection:'EPSG:28992'}); //pan to point 125
 <h1><a name="MapQuery.Layer">MapQuery.Layer</a></h1>
 
 <p>The <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> object. It is constructed with layer options object in the
-map.<code><a name="layers([options])">layers([options])</a></code> function or by passing a <code>layer:{options}</code> object in the <code>mapQuery()</code> 
+map.<code><a name="layers([options])">layers([options])</a></code> function or by passing a <code>layer:{options}</code> object in the <code>mapQuery()</code>
 constructor. The Layer object is refered to as <em>layer</em> in the documentation.</p>
 
 <h3><em>layer</em>.<code><a name="down([delta])">down([delta])</a></code></h3>
@@ -167,16 +178,16 @@ constructor. The Layer object is refered to as <em>layer</em> in the documentati
 
 <h4><strong>Description</strong>: move the layer down in the layer stack of the map</h4>
 
-<p><strong>delta</strong> the amount of layers the layer has to move down in the layer stack (default 1)  </p>
+<p><strong>delta</strong> the amount of layers the layer has to move down in the layer stack (default 1)</p>
 
 <blockquote>
-  <p>Returns layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)  </p>
+  <p>Returns layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)</p>
 </blockquote>
 
 <p>The <code>.down()</code> method is a shortcut method for <code>.position(pos)</code> which makes
 it easier to move a layer down in the layerstack relative to its current position.
 It takes an integer and will try to move the layer down the number of places given.
-If delta is bigger than the current position in the stack, it will put the layer 
+If delta is bigger than the current position in the stack, it will put the layer
 at the bottom.</p>
 
 <pre><code>layer.down();  //move layer 1 place down
@@ -190,10 +201,10 @@ layer.down(3); //move layer 3 places down
 <h4><strong>Description</strong>: remove the layer from the map</h4>
 
 <blockquote>
-  <p>Returns: id (string)  </p>
+  <p>Returns: id (string)</p>
 </blockquote>
 
-<p>The <code>.<a href="jquery.mapquery.core.js.html#remove()">remove()</a></code> method allows us to remove a layer from the map. 
+<p>The <code>.<a href="jquery.mapquery.core.js.html#remove()">remove()</a></code> method allows us to remove a layer from the map.
 It returns an id to allow widgets to remove their references to the destroyed layer.</p>
 
 <pre><code>var id = layer.<a href="jquery.mapquery.core.js.html#remove()">remove()</a>; //remove this layer
@@ -205,14 +216,14 @@ It returns an id to allow widgets to remove their references to the destroyed la
 
 <h4><strong>Description</strong>: get/set the <code>position</code> of the layer in the layer stack of the map</h4>
 
-<p><strong>position</strong> an integer setting the new position of the layer in the layer stack  </p>
+<p><strong>position</strong> an integer setting the new position of the layer in the layer stack</p>
 
 <blockquote>
-  <p>Returns: position (integer)  </p>
+  <p>Returns: position (integer)</p>
 </blockquote>
 
-<p>The <code>.position()</code> method allows us to change the position of the layer in the layer 
-stack. It will take into account the hidden baselayer that is used by OpenLayers. 
+<p>The <code>.position()</code> method allows us to change the position of the layer in the layer
+stack. It will take into account the hidden baselayer that is used by OpenLayers.
 The lowest layer is position 0.
 If no position is given, it will return the current postion.</p>
 
@@ -226,10 +237,10 @@ layer.position(2); //put layer on position 2 in the layer stack
 
 <h4><strong>Description</strong>: move the layer up in the layer stack of the map</h4>
 
-<p><strong>delta</strong> the amount of layers the layer has to move up in the layer stack (default 1)  </p>
+<p><strong>delta</strong> the amount of layers the layer has to move up in the layer stack (default 1)</p>
 
 <blockquote>
-  <p>Returns: layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)  </p>
+  <p>Returns: layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)</p>
 </blockquote>
 
 <p>The <code>.up()</code> method is a shortcut method for <code>.position(pos)</code> which makes
@@ -246,13 +257,13 @@ layer.up(3); //move layer 3 places up
 
 <h4><strong>Description</strong>: get/set the <code>visible</code> state of the layer</h4>
 
-<p><strong>visible</strong> a boolean setting the visibiliyu of the layer  </p>
+<p><strong>visible</strong> a boolean setting the visibiliyu of the layer</p>
 
 <blockquote>
-  <p>Returns: visible (boolean)  </p>
+  <p>Returns: visible (boolean)</p>
 </blockquote>
 
-<p>The <code>.visible()</code> method allows us to change the visibility of the layer. 
+<p>The <code>.visible()</code> method allows us to change the visibility of the layer.
 If no visible is given, it will return the current visibility.</p>
 
 <pre><code>var vis =  layer.visible(); //get the visibility of layer
@@ -265,17 +276,135 @@ layer.visible(true); //set visibility of layer to true
 
 <h4><strong>Description</strong>: get/set the <code>opacity</code> of the layer</h4>
 
-<p><strong>position</strong> a float [0-1] setting the opacity of the layer  </p>
+<p><strong>position</strong> a float [0-1] setting the opacity of the layer</p>
 
 <blockquote>
-  <p>Returns: opacity (float)  </p>
+  <p>Returns: opacity (float)</p>
 </blockquote>
 
-<p>The <code>.opacity()</code> method allows us to change the opacity of the layer. 
+<p>The <code>.opacity()</code> method allows us to change the opacity of the layer.
 If no opacity is given, it will return the current opacity.</p>
 
 <pre><code>var opac =  layer.opacity(); //get opacity of layer
 layer.opacity(0.7); //set opacity of layer to 0.7
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:bing}">{type:bing}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a Bing maps layer</h4>
+
+<p><strong>view</strong> a string ['road','hybrid','satellite'] to define which Bing maps layer to use (default road) <br />
+<strong>key</strong> Bing Maps API key for your application. Get you own at http://bingmapsportal.com/ <br />
+<strong>label</strong> string with the name of the layer </p>
+
+<pre><code> layers:[{
+       type:'bing',      //create a bing maps layer
+       view:'satellite', //use the bing satellite layer
+       key:'ArAGGPJ16xm0RX' //the Bing maps API key
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:google}">{type:google}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a Google maps layer</h4>
+
+<p><strong>view</strong> a string ['road','hybrid','satellite'] to define which Google maps layer to use (default road) <br />
+<strong>label</strong> string with the name of the layer</p>
+
+<p><em>Note</em> you need to include the google maps v3 API in your application by adding
+<code>&lt;script src="http://maps.google.com/maps/api/js?v=3.5&amp;amp;sensor=false" type="text/javascript"&gt;&lt;/script&gt;</code></p>
+
+<pre><code> layers:[{
+       type:'google',      //create a google maps layer
+       view:'hybrid' //use the google hybridlayer
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:vector}">{type:vector}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a vector layer</h4>
+
+<p><strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type:'vector'     //create a vector layer
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:json}">{type:json}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a JSON layer</h4>
+
+<p><strong>url</strong> a string pointing to the location of the JSON data
+<strong>strategies</strong> a string ['bbox','cluster','filter','fixed','paging','refresh','save'] 
+stating which update strategy should be used (see also http://dev.openlayers.org/apidocs/files/OpenLayers/Strategy-js.html)
+(default fixed) <br />
+<strong>projection</strong> a string with the projection of the JSON data (default EPSG:4326) <br />
+<strong>styleMap</strong> {object} the style to be used to render the JSON data <br />
+<strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type: 'JSON',
+       url: 'data/reservate.json',
+       label: 'reservate'
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:osm}">{type:osm}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create an OpenStreetMap layer</h4>
+
+<p><strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type: 'osm'
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:wms}">{type:wms}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a WMS layer</h4>
+
+<p><strong>url</strong> a string pointing to the location of the WMS service
+<strong>layers</strong> a string with the name of the WMS layer(s)
+<strong>format</strong> a string with format of the WMS image (default image/jpeg) <br />
+<strong>transparent</strong> a boolean for requesting images with transparency <br />
+<strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type:'wms',
+       url:'http://vmap0.tiles.osgeo.org/wms/vmap0',
+       layers:'basic'
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:wmts}">{type:wmts}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a WMTS (tiling) layer</h4>
+
+<p><strong>url</strong> a string pointing to the location of the WMTS service
+<strong>layer</strong> a string with the name of the WMTS layer
+<strong>matrixSet</strong> a string with one of the advertised matrix set identifiers
+<strong>style</strong> a string with one of the advertised layer styles <br />
+<strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type:'wmts'
+       }]
 </code></pre>
     </div>
 </body>

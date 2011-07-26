@@ -197,10 +197,10 @@ We can also use it to retrieve all layers currently attached to the map.
 _version added 0.1_
 ####**Description**: get/set the extent, zoom and position of the map
 
-**position** the position as [x,y] in displayProjection (default EPSG:4326) to center the map at
-**zoom** the zoomlevel as integer to zoom the map to
+**position** the position as [x,y] in displayProjection (default EPSG:4326) to center the map at   
+**zoom** the zoomlevel as integer to zoom the map to   
 **box** an array with the lower left x, lower left y, upper right x, upper right y to zoom the map to,
-this will take precedent when conflicting with any of the above values
+this will take precedent when conflicting with any of the above values   
 **projection** the projection the coordinates are in, default is the displayProjection
 
 >Returns: {position: [x,y], zoom: z<int>, box: [llx,lly,urx,ury]}
@@ -544,25 +544,25 @@ $.fn.mapQuery = function(options) {
     });
 };
 
+$.extend($.MapQuery.Layer, {
+    types: {
 /**
 ###*layer* `{type:bing}`
 _version added 0.1_
-####**Description**: create a Bing layer
+####**Description**: create a Bing maps layer
 
-**view** a string ['road','hybrid','satellite'] to define which Bing layer to use (default road)
-**key** Bing Maps API key for your application. Get you own at http://bingmapsportal.com/ 
+**view** a string ['road','hybrid','satellite'] to define which Bing maps layer to use (default road)   
+**key** Bing Maps API key for your application. Get you own at http://bingmapsportal.com/    
+**label** string with the name of the layer 
 
 
       layers:[{
-            type:'bing',        //create a bing maps layer
-            view:'satellite',    //use the bing satellite (aerial) layer
-            key:'ArAGGPJ16xm0RXRbw27PvYc9Tfuj1k1dUr_gfA5j8QBD6yAYMlsAtF6YkVyiiLGn' 
+            type:'bing',      //create a bing maps layer
+            view:'satellite', //use the bing satellite layer
+            key:'ArAGGPJ16xm0RX' 
             }]
 
 */
-
-$.extend($.MapQuery.Layer, {
-    types: {
         bing: function(options) {
             var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
                 $.fn.mapQuery.defaults.layer.bing,
@@ -592,6 +592,25 @@ $.extend($.MapQuery.Layer, {
                 options: o
             };
         },
+/**
+###*layer* `{type:google}`
+_version added 0.1_
+####**Description**: create a Google maps layer
+
+**view** a string ['road','hybrid','satellite'] to define which Google maps layer to use (default road)    
+**label** string with the name of the layer
+
+
+*Note* you need to include the google maps v3 API in your application by adding
+`<script src="http://maps.google.com/maps/api/js?v=3.5&amp;sensor=false" type="text/javascript"></script>`
+
+
+      layers:[{
+            type:'google',      //create a google maps layer
+            view:'hybrid', //use the google hybridlayer
+            }]
+
+*/
         google: function(options) {
             var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
                     $.fn.mapQuery.defaults.layer.google,
@@ -612,6 +631,19 @@ $.extend($.MapQuery.Layer, {
                 options: o
             };
         },
+/**
+###*layer* `{type:vector}`
+_version added 0.1_
+####**Description**: create a vector layer
+
+**label** string with the name of the layer
+
+
+      layers:[{
+            type:'vector',      //create a vector layer
+            }]
+
+*/
         vector: function(options) {
             var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
                     $.fn.mapQuery.defaults.layer.vector,
@@ -622,6 +654,27 @@ $.extend($.MapQuery.Layer, {
                 options: o
             };
         },
+/**
+###*layer* `{type:json}`
+_version added 0.1_
+####**Description**: create a JSON layer
+
+**url** a string pointing to the location of the JSON data
+**strategies** a string ['bbox','cluster','filter','fixed','paging','refresh','save'] 
+stating which update strategy should be used (see also http://dev.openlayers.org/apidocs/files/OpenLayers/Strategy-js.html)
+(default fixed)   
+**projection** a string with the projection of the JSON data (default EPSG:4326)    
+**styleMap** {object} the style to be used to render the JSON data    
+**label** string with the name of the layer
+
+
+      layers:[{
+            type: 'JSON',
+            url: 'data/reservate.json',
+            label: 'reservate'
+            }]
+
+*/
         json: function(options) {
             var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
                     $.fn.mapQuery.defaults.layer.vector,
@@ -672,6 +725,20 @@ $.extend($.MapQuery.Layer, {
                 options: o
             };
         },
+/**
+###*layer* `{type:osm}`
+_version added 0.1_
+####**Description**: create an OpenStreetMap layer
+
+ 
+**label** string with the name of the layer
+
+
+      layers:[{
+            type: 'osm',
+            }]
+
+*/
         osm: function(options) {
             var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
                 $.fn.mapQuery.defaults.layer.osm,
@@ -683,6 +750,25 @@ $.extend($.MapQuery.Layer, {
                 options: o
             };
         },
+/**
+###*layer* `{type:wms}`
+_version added 0.1_
+####**Description**: create a WMS layer
+
+**url** a string pointing to the location of the WMS service
+**layers** a string with the name of the WMS layer(s)
+**format** a string with format of the WMS image (default image/jpeg)    
+**transparent** a boolean for requesting images with transparency    
+**label** string with the name of the layer
+
+
+      layers:[{
+            type:'wms',
+            url:'http://vmap0.tiles.osgeo.org/wms/vmap0',
+            layers:'basic'
+            }]
+
+*/
         wms: function(options) {
             var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
                     $.fn.mapQuery.defaults.layer.raster,
@@ -697,6 +783,24 @@ $.extend($.MapQuery.Layer, {
                 options: o
             };
         },
+//TODO complete this documentation
+/**
+###*layer* `{type:wmts}`
+_version added 0.1_
+####**Description**: create a WMTS (tiling) layer
+
+**url** a string pointing to the location of the WMTS service
+**layer** a string with the name of the WMTS layer
+**matrixSet** a string with one of the advertised matrix set identifiers
+**style** a string with one of the advertised layer styles    
+**label** string with the name of the layer
+
+
+      layers:[{
+            type:'wmts'
+            }]
+
+*/
         wmts: function(options) {
             var o = $.extend(true, {}, $.fn.mapQuery.defaults.layer.all,
                     $.fn.mapQuery.defaults.layer.wmts);

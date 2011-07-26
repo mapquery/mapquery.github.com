@@ -67,7 +67,13 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
 <li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li>
-<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:bing}">{type:bing}</a></li></ul></code></div>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:bing}">{type:bing}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:google}">{type:google}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:json}">{type:json}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:osm}">{type:osm}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:vector}">{type:vector}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:wms}">{type:wms}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:wmts}">{type:wmts}</a></li></ul></code></div>
     <h1><a name="jquery.mapquery.core.js">jquery.mapquery.core.js</a></h1>
 
 <p>The main MapQuery file. It contains the MapQuery constructor, the <a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a>
@@ -134,10 +140,10 @@ var layers = map.layers(); //get all layers of the map
 
 <h4><strong>Description</strong>: get/set the extent, zoom and position of the map</h4>
 
-<p><strong>position</strong> the position as [x,y] in displayProjection (default EPSG:4326) to center the map at
-<strong>zoom</strong> the zoomlevel as integer to zoom the map to
+<p><strong>position</strong> the position as [x,y] in displayProjection (default EPSG:4326) to center the map at <br />
+<strong>zoom</strong> the zoomlevel as integer to zoom the map to <br />
 <strong>box</strong> an array with the lower left x, lower left y, upper right x, upper right y to zoom the map to,
-this will take precedent when conflicting with any of the above values
+this will take precedent when conflicting with any of the above values <br />
 <strong>projection</strong> the projection the coordinates are in, default is the displayProjection</p>
 
 <blockquote>
@@ -287,15 +293,117 @@ layer.opacity(0.7); //set opacity of layer to 0.7
 
 <p><em>version added 0.1</em></p>
 
-<h4><strong>Description</strong>: create a Bing layer</h4>
+<h4><strong>Description</strong>: create a Bing maps layer</h4>
 
-<p><strong>view</strong> a string ['road','hybrid','satellite'] to define which Bing layer to use (default road)
-<strong>key</strong> Bing Maps API key for your application. Get you own at http://bingmapsportal.com/ </p>
+<p><strong>view</strong> a string ['road','hybrid','satellite'] to define which Bing maps layer to use (default road) <br />
+<strong>key</strong> Bing Maps API key for your application. Get you own at http://bingmapsportal.com/ <br />
+<strong>label</strong> string with the name of the layer </p>
 
 <pre><code> layers:[{
-       type:'bing',        //create a bing maps layer
-       view:'satellite',    //use the bing satellite (aerial) layer
-       key:'ArAGGPJ16xm0RXRbw27PvYc9Tfuj1k1dUr_gfA5j8QBD6yAYMlsAtF6YkVyiiLGn' 
+       type:'bing',      //create a bing maps layer
+       view:'satellite', //use the bing satellite layer
+       key:'ArAGGPJ16xm0RX' 
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:google}">{type:google}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a Google maps layer</h4>
+
+<p><strong>view</strong> a string ['road','hybrid','satellite'] to define which Google maps layer to use (default road) <br />
+<strong>label</strong> string with the name of the layer</p>
+
+<p><em>Note</em> you need to include the google maps v3 API in your application by adding
+<code>&lt;script src="http://maps.google.com/maps/api/js?v=3.5&amp;amp;sensor=false" type="text/javascript"&gt;&lt;/script&gt;</code></p>
+
+<pre><code> layers:[{
+       type:'google',      //create a google maps layer
+       view:'hybrid', //use the google hybridlayer
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:vector}">{type:vector}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a vector layer</h4>
+
+<p><strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type:'vector',      //create a vector layer
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:json}">{type:json}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a JSON layer</h4>
+
+<p><strong>url</strong> a string pointing to the location of the JSON data
+<strong>strategies</strong> a string ['bbox','cluster','filter','fixed','paging','refresh','save'] 
+stating which update strategy should be used (see also http://dev.openlayers.org/apidocs/files/OpenLayers/Strategy-js.html)
+(default fixed) <br />
+<strong>projection</strong> a string with the projection of the JSON data (default EPSG:4326) <br />
+<strong>styleMap</strong> {object} the style to be used to render the JSON data <br />
+<strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type: 'JSON',
+       url: 'data/reservate.json',
+       label: 'reservate'
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:osm}">{type:osm}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create an OpenStreetMap layer</h4>
+
+<p><strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type: 'osm',
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:wms}">{type:wms}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a WMS layer</h4>
+
+<p><strong>url</strong> a string pointing to the location of the WMS service
+<strong>layers</strong> a string with the name of the WMS layer(s)
+<strong>format</strong> a string with format of the WMS image (default image/jpeg) <br />
+<strong>transparent</strong> a boolean for requesting images with transparency <br />
+<strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type:'wms',
+       url:'http://vmap0.tiles.osgeo.org/wms/vmap0',
+       layers:'basic'
+       }]
+</code></pre>
+
+<h3><em>layer</em> <code><a name="{type:wmts}">{type:wmts}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a WMTS (tiling) layer</h4>
+
+<p><strong>url</strong> a string pointing to the location of the WMTS service
+<strong>layer</strong> a string with the name of the WMTS layer
+<strong>matrixSet</strong> a string with one of the advertised matrix set identifiers
+<strong>style</strong> a string with one of the advertised layer styles <br />
+<strong>label</strong> string with the name of the layer</p>
+
+<pre><code> layers:[{
+       type:'wmts'
        }]
 </code></pre>
     </div>

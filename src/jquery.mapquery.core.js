@@ -2,7 +2,7 @@
  * full list of contributors). Published under the MIT license.
  * See https://github.com/mapquery/mapquery/blob/master/LICENSE for the
  * full text of the license. */
-
+(function ($) {
 /**
 # jquery.mapquery.core.js
 The main MapQuery file. It contains the MapQuery constructor, the MapQuery.Map
@@ -35,7 +35,6 @@ the 'mapQuery' data object.
 
      var mq = map.data('mapQuery'); //get the MapQuery object
  */
-(function ($) {
 $.MapQuery = $.MapQuery || {};
 
 /**
@@ -220,7 +219,7 @@ this will take precedent when conflicting with any of the above values
 **projection** the projection the coordinates are in, default is
 the displayProjection
 
->Returns: {position: [x,y], zoom: z<int>, box: [llx,lly,urx,ury]}
+>Returns: {position: [x,y], zoom: z(int), box: [llx,lly,urx,ury]}
 
 
 The `.center()` method allows us to move to map to a specific zoom level,

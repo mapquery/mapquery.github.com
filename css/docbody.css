@@ -7,10 +7,13 @@ body {
   font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
   color: #000000;
   line-height: 1.35em;
+  width: 100%;
+  height: 100%;
 }
 #container {
   margin: 0 auto;
   width: 950px;
+  height:100%;
 }
 .sidebar {
     position: absolute;
@@ -23,6 +26,9 @@ body {
 }
 .logo a {
     text-decoration: none;
+}
+a img{
+    border: none;
 }
 .blurb h2{
     font: 18px "Georgia","Palatino","Times New Roman","Times";

@@ -2,7 +2,7 @@
  * full list of contributors). Published under the MIT license.
  * See https://github.com/mapquery/mapquery/blob/master/LICENSE for the
  * full text of the license. */
-
+(function ($) {
 /**
 # jquery.mapquery.core.js
 The main MapQuery file. It contains the MapQuery constructor, the MapQuery.Map
@@ -19,7 +19,7 @@ pairs are:
 
  * **layers** (array of MapQuery.Layer *or* MapQuery.Layer): Either an array
  * or a single layer that should be added to the map
- * **center** ({position: [x,y], zoom: z<int>, box: [llx,lly,urx,ury]}):
+ * **center** ({position: [x,y], zoom: z(int), box: [llx,lly,urx,ury]}):
  * Initially go to a certain location. At least one layer (in the `layers`
  * option) needs to be specified.
 
@@ -35,7 +35,6 @@ the 'mapQuery' data object.
 
      var mq = map.data('mapQuery'); //get the MapQuery object
  */
-(function ($) {
 $.MapQuery = $.MapQuery || {};
 
 /**
@@ -220,7 +219,7 @@ this will take precedent when conflicting with any of the above values
 **projection** the projection the coordinates are in, default is
 the displayProjection
 
->Returns: {position: [x,y], zoom: z<int>, box: [llx,lly,urx,ury]}
+>Returns: {position: [x,y], zoom: z(int), box: [llx,lly,urx,ury]}
 
 
 The `.center()` method allows us to move to map to a specific zoom level,
@@ -661,7 +660,7 @@ layer to use (default road)
                     view = google.maps.MapTypeId.SATELLITE; break;
             }
             return {
-                layer: new OpenLayers.Layer.GoogleNG({type:view}),
+                layer: new OpenLayers.Layer.Google({type:view}),
                 options: o
             };
         },

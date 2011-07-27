@@ -23,6 +23,10 @@ body {
 }
 .logo a {
     text-decoration: none;
+    border: none;
+}
+a img{
+    border: none;
 }
 .blurb h2{
     font: 18px "Georgia","Palatino","Times New Roman","Times";

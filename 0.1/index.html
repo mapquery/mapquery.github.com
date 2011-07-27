@@ -17,7 +17,7 @@
     $(document).ready(function() {
     var map = $('#map').mapQuery({layers:[{type:'osm'}]}); //initialise mapquery with an OSM layer
     $('.zoom').mqZoomButtons({map:$('#map')});
-    map.data('mapQuery').goto({zoom:1,position:[0,20]});
+    map.data('mapQuery').center({zoom:1,position:[0,20]});
     });
   </script>
   <title>MapQuery 0.1</title>
@@ -25,7 +25,7 @@
 <body>
   <div id="container">
     <div class="sidebar">
-        <div class="logo"><span><a href="http://mapquery.org/">
+        <div class="logo"><span><a href="http://mapquery.org/0.1/">
              <img src="img/logo.png" alt="MapQuery" title="MapQuery"></a></span></div>
         <div class="blurb">
             <h2>Combining the powers of OpenLayers and jQuery</h2>
@@ -34,14 +34,16 @@
             <ul>
                 <li><a href="http://github.com/mapquery/mapquery/zipball/master">MapQuery.zip</a></li>
                 <li><a href="http://github.com/mapquery/mapquery/">MapQuery.git</a></li>
+                <li>&nbsp;</li>
+                <li><a href="http://mapquery.org/0.1/jquery.mapquery.js">Hosted</a></li>
             </ul>
         </div>
     </div>
     <div class="header">
-        <a href="/" class="active">Overview</a>
+        <a href="." class="active">Overview</a>
         <a href="docs">Documentation</a>
         <a href="demo">Examples</a>
-        <a href="http://github.com/mapquery/mapquery/">Code</a>
+        <a href="https://github.com/mapquery/mapquery/branches/v0.1">Code</a>
     </div>
     <div class="content">
         <div id="mapholder">

@@ -17,7 +17,7 @@
     $(document).ready(function() {
     var map = $('#map').mapQuery({layers:[{type:'osm'}]}); //initialise mapquery with an OSM layer
     $('.zoom').mqZoomButtons({map:$('#map')});
-    map.data('mapQuery').goto({zoom:1,position:[0,20]});
+    map.data('mapQuery').center({zoom:1,position:[0,20]});
     });
   </script>
   <title>MapQuery</title>
@@ -39,11 +39,11 @@
             </ul>
         </div>
     </div>
-    <div class="header">
-        <a href="/" class="active">Overview</a>
-        <a href="docs">Documentation</a>
+   <div class="header">
+        <a href="." >Overview</a>
+        <a href="docs" class="active">Documentation</a>
         <a href="demo">Examples</a>
-        <a href="http://github.com/mapquery/mapquery/">Code</a>
+        <a href="https://github.com/mapquery/mapquery/">Code</a>
     </div>
     <div class="content">
         <div id="mapholder">

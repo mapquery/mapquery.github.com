@@ -384,10 +384,19 @@ stating which update strategy should be used (default fixed)
 
 <h4><strong>Description</strong>: create an OpenStreetMap layer</h4>
 
-<p><strong>label</strong> string with the name of the layer</p>
+<p><strong>label</strong> string with the name of the layer <br />
+<strong>url</strong> A single URL (string) or an array of URLs to OSM-like server like 
+Cloudmade <br />
+<strong>attribution</strong> A string to put some attribution on the map</p>
 
 <pre><code> layers:[{
-       type: 'osm'
+       type: 'osm',
+       url: [
+               'http://a.tile.cloudmade.com/&lt;yourapikey&gt;/999/256/${z}/${x}/${y}.png',
+               'http://b.tile.cloudmade.com/&lt;yourapikey&gt;/999/256/${z}/${x}/${y}.png',
+               'http://c.tile.cloudmade.com/&lt;yourapikey&gt;/999/256/${z}/${x}/${y}.png'
+           ],
+       attribution: "Data &amp;copy; 2009 &lt;a href='http://openstreetmap.org/'&gt;OpenStreetMap&lt;/a&gt;. Rendering &amp;copy; 2009 &lt;a href='http://cloudmade.com'&gt;CloudMade&lt;/a&gt;."
        }]
 </code></pre>
 

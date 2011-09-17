@@ -29,6 +29,7 @@
 <li><a href="jquery.mapquery.mqFeatureInfo.js.html#jquery.mapquery.mqFeatureInfo.js">jquery.mapquery.mqFeatureInfo.js</a></li>
 <li><a href="jquery.mapquery.mqLayerControl.js.html#jquery.mapquery.mqLayerControl.js">jquery.mapquery.mqLayerControl.js</a></li>
 <li><a href="jquery.mapquery.mqLayerManager.js.html#jquery.mapquery.mqLayerManager.js">jquery.mapquery.mqLayerManager.js</a></li>
+<li><a href="jquery.mapquery.mqMousePosition.js.html#jquery.mapquery.mqMousePosition.js">jquery.mapquery.mqMousePosition.js</a></li>
 <li><a href="jquery.mapquery.mqOverviewMap.js.html#jquery.mapquery.mqOverviewMap.js">jquery.mapquery.mqOverviewMap.js</a></li>
 <li><a href="jquery.mapquery.mqPopup.js.html#jquery.mapquery.mqPopup.js">jquery.mapquery.mqPopup.js</a></li>
 <li><a href="jquery.mapquery.mqZoomButtons.js.html#jquery.mapquery.mqZoomButtons.js">jquery.mapquery.mqZoomButtons.js</a></li>
@@ -55,6 +56,7 @@
 <li class="functionli"><a href="jquery.mapquery.mqFeatureInfo.js.html#mqFeatureInfo([options])">mqFeatureInfo([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqLayerControl.js.html#mqLayerControl([options])">mqLayerControl([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqLayerManager.js.html#mqLayerManager([options])">mqLayerManager([options])</a></li>
+<li class="functionli"><a href="jquery.mapquery.mqMousePosition.js.html#mqMousePosition([options])">mqMousePosition([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqOverviewMap.js.html#mqOverviewMap([options])">mqOverviewMap([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqPopup.js.html#mqPopup([options])">mqPopup([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.mqZoomButtons.js.html#mqZoomButtons([options])">mqZoomButtons([options])</a></li>
@@ -74,7 +76,34 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:vector}">{type:vector}</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:wms}">{type:wms}</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:wmts}">{type:wmts}</a></li></ul></code></div>
-    
+    <h1><a name="jquery.mapquery.mqMousePosition.js">jquery.mapquery.mqMousePosition.js</a></h1>
+
+<p>The file containing the mqMousePosition Widget</p>
+
+<h3><em>$('selector')</em>.<code><a name="mqMousePosition([options])">mqMousePosition([options])</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create a widget to show the location under the mouse pointer</h4>
+
+<ul>
+<li><strong>options</strong>
+<ul><li><strong>map</strong>: the mapquery instance</li>
+<li><strong>precision</strong>: the number of decimals (default 2)</li>
+<li><strong>x</strong>: the label for the x-coordinate (default x)</li>
+<li><strong>y</strong>: the label for the y-coordinate (default y)</li></ul></li>
+</ul>
+
+<blockquote>
+  <p>Returns: widget</p>
+</blockquote>
+
+<p>The mqMousePosition allows us to show the coordinates under the mouse pointer</p>
+
+<pre><code>$('#mousepointer').mqMousePointer({
+   map: '#map'
+});
+</code></pre>
     </div>
 </body>
 </html>

@@ -73,6 +73,7 @@
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:google}">{type:google}</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:json}">{type:json}</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:osm}">{type:osm}</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#{type:tms}">{type:tms}</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:vector}">{type:vector}</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:wms}">{type:wms}</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#{type:wmts}">{type:wmts}</a></li></ul></code></div>
@@ -446,6 +447,27 @@ Cloudmade   </li>
    attribution: "Data &copy; 2009 <a href='http://openstreetmap.org/'>
      OpenStreetMap</a>. Rendering &copy; 2009 
      <a href='http://cloudmade.com'>CloudMade</a>."
+   }]</p></li>
+</ul>
+
+<h3><em>layer</em> <code><a name="{type:tms}">{type:tms}</a></code></h3>
+
+<p><em>version added 0.1</em></p>
+
+<h4><strong>Description</strong>: create an OpenStreetMap layer</h4>
+
+<ul>
+<li><strong>label</strong> string with the name of the layer   </li>
+<li><strong>url</strong> A single URL (string) or an array of URLs to the TMS end point</li>
+<li><strong>layer</strong> The identifier for the <TileMap> as advertised by the service. 
+For example, if the service advertises a <TileMap> with ‘href=”http://tms.osgeo.org/1.0.0/vmap0”’, 
+the layer property would be set to “vmap0”.</li>
+<li><p><strong>format</strong> The image format (default png)</p>
+
+<p>layers:[{
+   type: 'tms',
+   url: 'http://tilecache.osgeo.org/wms-c/Basic.py/',
+   layer: 'basic'
    }]</p></li>
 </ul>
 

@@ -36,6 +36,7 @@
 <li><a href="jquery.mapquery.mqZoomSlider.js.html#jquery.mapquery.mqZoomSlider.js">jquery.mapquery.mqZoomSlider.js</a></li>
 <li><a href="jquery.mapquery.popup.js.html#jquery.mapquery.popup.js">jquery.mapquery.popup.js</a></li></ul>
 <ul>
+<li><a href="jquery.mapquery.core.js.html#MapQuery.Feature">MapQuery.Feature</a></li>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a></li>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a></li></ul></span>
          
@@ -50,6 +51,7 @@
     <div class="content">
     <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#center([options])">center([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#features([options])">features([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.legend.js.html#legend([options])">legend([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
@@ -66,6 +68,9 @@
 <li class="functionli"><a href="jquery.mapquery.popup.js.html#pixelsFromPosition(x, y)">pixelsFromPosition(x, y)</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#position([position])">position([position])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#select(exclusive)">select(exclusive)</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#trigger(name [, parameters])">trigger(name [, parameters])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#unselect()">unselect()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
 <li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li>
@@ -107,7 +112,7 @@ panned in (default 10)</p>
 <pre><code> $('#popup').mqPopup({
    map: '#map',
    contents: function(feature) {
-       return '&lt;p&gt;' + feature.data.id + '&lt;/p&gt;';
+       return '&lt;p&gt;' + feature.properties.id + '&lt;/p&gt;';
    }
  });
 </code></pre>

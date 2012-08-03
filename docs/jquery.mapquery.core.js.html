@@ -36,6 +36,7 @@
 <li><a href="jquery.mapquery.mqZoomSlider.js.html#jquery.mapquery.mqZoomSlider.js">jquery.mapquery.mqZoomSlider.js</a></li>
 <li><a href="jquery.mapquery.popup.js.html#jquery.mapquery.popup.js">jquery.mapquery.popup.js</a></li></ul>
 <ul>
+<li><a href="jquery.mapquery.core.js.html#MapQuery.Feature">MapQuery.Feature</a></li>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a></li>
 <li><a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a></li></ul></span>
          
@@ -50,6 +51,7 @@
     <div class="content">
     <div class="links"><code class="functionlist"><ul class="functionul"><li class="functionli"><a href="jquery.mapquery.core.js.html#center([options])">center([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#down([delta])">down([delta])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#features([options])">features([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.legend.js.html#legend([options])">legend([options])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#mapQuery([options])">mapQuery([options])</a></li>
@@ -66,6 +68,9 @@
 <li class="functionli"><a href="jquery.mapquery.popup.js.html#pixelsFromPosition(x, y)">pixelsFromPosition(x, y)</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#position([position])">position([position])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#remove()">remove()</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#select(exclusive)">select(exclusive)</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#trigger(name [, parameters])">trigger(name [, parameters])</a></li>
+<li class="functionli"><a href="jquery.mapquery.core.js.html#unselect()">unselect()</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#up([delta])">up([delta])</a></li>
 <li class="functionli"><a href="jquery.mapquery.core.js.html#visible([visible])">visible([visible])</a></li>
 <li class="functionli"><a href="jquery.mapquery.popup.js.html#zindex()">zindex()</a></li>
@@ -140,7 +145,7 @@ more layers
 
 
 <blockquote>
-  <p>Returns: [layer] (array of <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)</p>
+  <p>Returns: [layer] (array of <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>) <em>or</em> false</p>
 </blockquote>
 
 The `.layers()` method allows us to attach layers to a mapQuery object. It takes
@@ -148,6 +153,9 @@ an options object with layer options. To add multiple layers, create an array of
 layer options objects. If an options object is given, it will return the
 resulting layer(s). We can also use it to retrieve all layers currently attached
 to the map.
+When adding layers, those are returned. If the creation is cancled by returning
+`false` in the `preaddlayer` event, this function returns `false` to
+intentionally break the chain instead of hiding errors subtly).
 
 
 <pre><code>var osm = map.layers({type:'osm'}); //add an osm layer to the map
@@ -191,25 +199,40 @@ map.center(box:[-180,-90,180,90]); //zoom to the box -180,-900,180,90
 map.center({position:[125000,485000],projection:'EPSG:28992'});
 </code></pre>
 
+<h3><em>map</em>.<code><a name="trigger(name [, parameters])">trigger(name [, parameters])</a></code></h3>
+
+_version added 0.2_
+
+
+<h4><strong>Description</strong>: triggers an event on the map</h4>
+
+<ul>
+<li><strong>name</strong> the name of the event</li>
+<li><p><strong>parameters</strong> additional parameters that will be passed on with the event</p>
+
+<blockquote>
+  <p>Returns: map (<a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a>)
+  To subscribe to the triggered events, you need to bind to the mapuuu.</p>
+</blockquote>
+
+<p>map.bind('myEvent', function(evt) {
+    console.log('the values are: ' + evt.data[0] + ' and ' + evt.data[1])
+});
+map.trigger('myEvent', 'some', 'values');</p></li>
+</ul>
+
 <hr />
-
-
-
 
 <h1><a name="MapQuery.Layer">MapQuery.Layer</a></h1>
 
-The <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> object. It is constructed with layer options object in the
-map.`<a href="jquery.mapquery.core.js.html#layers([options])">layers([options])</a>` function or by passing a `layer:{options}` object in
-the `mapQuery()` constructor. The Layer object is refered to as _layer_ in the
-documentation.
-
-
-
+<p>The <a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a> object. It is constructed with layer options object in the
+map.<code><a name="layers([options])">layers([options])</a></code> function or by passing a <code>layer:{options}</code> object in
+the <code>mapQuery()</code> constructor. The Layer object is refered to as <em>layer</em> in the
+documentation.</p>
 
 <h3><em>layer</em>.<code><a name="down([delta])">down([delta])</a></code></h3>
 
-_version added 0.1_
-
+<p><em>version added 0.1</em></p>
 
 <h4><strong>Description</strong>: move the layer down in the layer stack of the map</h4>
 
@@ -234,7 +257,7 @@ layer.down(3); //move layer 3 places down
 
 <h3><em>layer</em>.<code><a name="remove()">remove()</a></code></h3>
 
-_version added 0.1_
+_version added 0.2_
 
 
 <h4><strong>Description</strong>: remove the layer from the map</h4>
@@ -242,12 +265,12 @@ _version added 0.1_
 
 
 <blockquote>
-  <p>Returns: id (string)</p>
+  <p>Returns: map (<a href="jquery.mapquery.core.js.html#MapQuery.Map">MapQuery.Map</a>) or false</p>
 </blockquote>
 
 The `.<a href="jquery.mapquery.core.js.html#remove()">remove()</a>` method allows us to remove a layer from the map.
-It returns an id to allow widgets to remove their references to the
-destroyed layer.
+It returns the `map` object if the layer was removed, or `false` if the
+removal was prevented in the preremovelayer event.
 
 <pre><code>var id = layer.<a href="jquery.mapquery.core.js.html#remove()">remove()</a>; //remove this layer
 </code></pre>
@@ -266,7 +289,7 @@ stack of the map
 
 
 <blockquote>
-  <p>Returns: position (integer)</li>
+  <p>Returns: position (integer) <em>or</em> layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)</li>
   </ul>
   The <code>.position()</code> method allows us to change the position of the layer in the
   layer stack. It will take into account the hidden baselayer that is used by
@@ -311,7 +334,7 @@ _version added 0.1_
 <h4><strong>Description</strong>: get/set the <code>visible</code> state of the layer</h4>
 
 <ul>
-<li><strong>visible</strong> a boolean setting the visibiliyu of the layer
+<li><strong>visible</strong> a boolean setting the visibility of the layer
 
 
 <blockquote>
@@ -337,7 +360,7 @@ _version added 0.1_
 
 
 <blockquote>
-  <p>Returns: opacity (float)</li>
+  <p>Returns: opacity (float) <em>or</em> layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)</li>
   </ul>
   The <code>.opacity()</code> method allows us to change the opacity of the layer.
   If no opacity is given, it will return the current opacity.</p>
@@ -347,10 +370,137 @@ _version added 0.1_
 layer.opacity(0.7); //set opacity of layer to 0.7
 </code></pre>
 
+<h3><em>layer</em>.<code><a name="trigger(name [, parameters])">trigger(name [, parameters])</a></code></h3>
+
+_version added 0.2_
+
+
+<h4><strong>Description</strong>: triggers an event on the layer and map</h4>
+
+<ul>
+<li><strong>name</strong> the name of the event</li>
+<li><p><strong>parameters</strong> additional parameters that will be passed on with the event</p>
+
+<blockquote>
+  <p>Returns: layer (<a href="jquery.mapquery.core.js.html#MapQuery.Layer">MapQuery.Layer</a>)
+  The events get triggered on the layer as well as on the map. To subscribe to
+  the triggered events, you can either bind to the layer or the map. If bound
+  to the map, the second argument in the bind will be the layer the event
+  came from</p>
+</blockquote>
+
+<p>layer.bind('myEvent', function(evt) {
+    console.log('the values are: ' + evt.data[0] + ' and ' + evt.data[1])
+});
+map.bind('myEvent', function(evt, layer) {
+    console.log('the values are: ' + evt.data[0] + ' and ' + evt.data[1])
+});
+layer.trigger('myEvent', 'some', 'values');</p></li>
+</ul>
+
+<h3><em>layer</em>.<code><a name="features([options])">features([options])</a></code></h3>
+
+<p><em>version added 0.2.0</em></p>
+
+<h4><strong>Description</strong>: get/set the features of a (vector) layer</h4>
+
+<p><strong>options</strong> an object of key-value pairs with options to create one or
+more features</p>
+
+<blockquote>
+  <p>Returns: [features] (array of <a href="jquery.mapquery.core.js.html#MapQuery.Feature">MapQuery.Feature</a>)</p>
+</blockquote>
+
+<p>The <code>.features()</code> method allows us to attach features to a mapQuery layer
+object. It takes an options object with feature options. To add multiple
+features, create an array of feature options objects. If an options object
+is given, it will return the resulting feature(s). We can also use it to
+retrieve all features currently attached to the layer.</p>
+
+<pre><code>// add an (vector) json layer to the map
+var jsonlayer = map.layers({type:'json'});
+// add a feature to the layer
+jsonlayer.features({geometry: {type: "Point", coordinates: [5.3, 7.4]}});
+// get all features of a layer (sorted with first added feature at the beginning
+var features = jsonlayer.features();
+</code></pre>
+
+<h1><a name="MapQuery.Feature">MapQuery.Feature</a></h1>
+
+<p>The <a href="jquery.mapquery.core.js.html#MapQuery.Feature">MapQuery.Feature</a> object. It is constructed with a feature options object
+in the layer.<code><a name="features([options])">features([options])</a></code> function. The Feautre object is refered to
+as <em>feature</em> in the documentation.
+TODO vmx 20110905: Support other geometry types than GeoJSON
+options:
+* geometry: A GeoJSON geometry
+* properties: Properties for the feature</p>
+
+<h3><em>feature</em>.<code><a name="remove()">remove()</a></code></h3>
+
+<p><em>version added 0.2.0</em></p>
+
+<h4><strong>Description</strong>: remove the feature from the layer</h4>
+
+<blockquote>
+  <p>Returns: layer (layer) or false</p>
+</blockquote>
+
+<p>The <code>.<a href="jquery.mapquery.core.js.html#remove()">remove()</a></code> method allows us to remove a feature from the layer.
+It returns the <code>layer</code> object if the feature was removed, or <code>false</code> if the
+removal was prevented in the preremovefeature event.</p>
+
+<pre><code>// add a feature to a layer
+var feature = layer.features({geometry: {type: "Point", coordinates: [5.3, 7.4]}});
+// remove the feature again
+feature.<a href="jquery.mapquery.core.js.html#remove()">remove()</a>;
+</code></pre>
+
+<h3><em>feature</em>.<code><a name="select(exclusive)">select(exclusive)</a></code></h3>
+
+<p><em>version added 0.2.0</em></p>
+
+<h4><strong>Description</strong>: select a feature</h4>
+
+<p><strong>exclusive</strong> (boolean, default: true) True means that all other features get
+deselectd</p>
+
+<blockquote>
+  <p>Returns: layer (layer)</p>
+</blockquote>
+
+<p>The <code>.select()</code> method allows us to select a feature from the layer.
+A <code>featureselected</code> will be fired.</p>
+
+<pre><code>// add a feature to a layer
+var feature = layer.features({geometry: {type: "Point", coordinates: [5.3, 7.4]}});
+// select the feature again
+feature.select();
+</code></pre>
+
+<h3><em>feature</em>.<code><a name="unselect()">unselect()</a></code></h3>
+
+<p><em>version added 0.2.0</em></p>
+
+<h4><strong>Description</strong>: unselect a feature</h4>
+
+<blockquote>
+  <p>Returns: layer (layer)</p>
+</blockquote>
+
+<p>The <code>.<a href="jquery.mapquery.core.js.html#unselect()">unselect()</a></code> method allows us to unselect a feature from the layer.
+A <code>featureunselected</code> will be fired.</p>
+
+<pre><code>// add a feature to a layer
+var feature = layer.features({geometry: {type: "Point", coordinates: [5.3, 7.4]}});
+// select the feature
+feature.select();
+// unselect the feature again
+feature.<a href="jquery.mapquery.core.js.html#unselect()">unselect()</a>;
+</code></pre>
+
 <h3><em>layer</em> <code><a name="{type:bing}">{type:bing}</a></code></h3>
 
-_version added 0.1_
-
+<p><em>version added 0.1</em></p>
 
 <h4><strong>Description</strong>: create a Bing maps layer</h4>
 
